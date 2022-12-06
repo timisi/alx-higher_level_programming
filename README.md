@@ -41,6 +41,3 @@ ALX for high-level programming. These projects are meant to help us learn how to
 
 ---
 
-## Author
- Derrick Gee - [kai-dg](https://github.com/kai-dg)
-
