@@ -1,4 +1,4 @@
-# ALX  High-level Programming :computer:
+# My ALX  High-level Programming :computer:
 
 ## Description
 ALX for high-level programming. These projects are meant to help us learn how to use and apply the basic fundamental concepts from [low-level programming](./https://github.com/kai-dg/holbertonschool-low_level_programming) on a different programming language.
