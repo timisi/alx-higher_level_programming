@@ -1,36 +1,37 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    if not isinstance(roman_string, str):
+    if type(roman_string) is not str or roman_string is None:
         return 0
-    num = 0
-    res = 0
-    aux = 0
-    list_num = []
 
-    for s in roman_string:
-        if s == 'I':
-            num = 1
-        elif s == 'V':
-            num = 5
-        elif s == 'X':
-            num = 10
-        elif s == 'L':
-            num = 50
-        elif s == 'C':
-            num = 100
-        elif s == 'D':
-            num = 500
-        elif s == 'M':
-            num = 1000
-        list_num.append(num)
-
-    len_list = len(list_num)
-    if len_list > 1:
-        for i in range(1, len_list):
-            if list_num[i] > list_num[i - 1]:
-                    aux = list_num[i] - list_num[i - 1]
-                    list_num[i] = aux
-                    list_num[i - 1] = 0
-    for num in list_num:
-        res += num
-    return
+    n = []
+    for i in roman_string:
+        if i == 'I':
+            n.append(1)
+        if i == 'V':
+            n.append(5)
+        if i == 'X':
+            n.append(10)
+        if i == 'L':
+            n.append(50)
+        if i == 'C':
+            n.append(100)
+        if i == 'D':
+            n.append(500)
+        if i == 'M':
+            n.append(1000)
+    result = 0
+    bool = False
+    for x in range(len(n)):
+        if bool is True:
+            bool = False
+            continue
+        if (x + 1) < len(n):
+            if n[x] < n[x + 1]:
+                result += n[x + 1] - n[x]
+                bool = True
+                continue
+            else:
+                result += n[x]
+        if (x + 1) == len(n):
+            result += n[x]
+    return result
