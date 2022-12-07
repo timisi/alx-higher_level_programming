@@ -33,4 +33,4 @@ def roman_to_int(roman_string):
                     list_num[i - 1] = 0
     for num in list_num:
         res += num
-    return 
+    return
