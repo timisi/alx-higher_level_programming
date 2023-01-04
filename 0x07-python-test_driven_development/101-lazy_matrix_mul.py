@@ -1,10 +1,17 @@
 #!/usr/bin/python3
 """
-lazy matrix multiplication using a module
-more experience with unit testing
+This is the lazy_matrix_mul module.
+This module supplies one function, lazy_matrix_mul().
 """
-from numpy import matmul
+import numpy as np
 
 
 def lazy_matrix_mul(m_a, m_b):
-    return matmul(m_a, m_b)
+    """
+    Return a new matrix where each element has been divided by div.
+    Args:
+        m_a (list): list of lists of integers or floats.
+        m_b (list): list of lists of integers or floats.
+    """
+
+    return np.dot(m_a, m_b)
