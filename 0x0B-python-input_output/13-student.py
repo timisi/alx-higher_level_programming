@@ -1,35 +1,31 @@
 #!/usr/bin/python3
-"""Student
-"""
+
+""" json """
 
 
 class Student:
-    """Contains student data
-    """
+    """ Class Student """
 
     def __init__(self, first_name, last_name, age):
+        """ Constructor """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """Retrieves dictionary of Student with conditions to filter
+        """ Retrieves Class dictionary base on attr
         """
+        if not isinstance(attrs, list) or \
+           not all(isinstance(i, str) for i in attrs):
 
-        if attrs == None or type(attrs) != list:
-            return self.__dict__
+            dic = self.__dict__.copy()
         else:
-            temp = {}
-            for elem in attrs:
-                if type(elem) != str:
-                    return self.__dict__
-                if elem in self.__dict__.keys():
-                    temp[elem] = self.__dict__[elem]
-            return temp
+
+            dic = {i: self.__dict__[i] for i in attrs if i in self.__dict__}
+
+        return dic
 
     def reload_from_json(self, json):
-        """Replaces all items in `json`
-        """
-
-        for items in json.keys():
-            self.__dict__[items] = json[items]
+        """ replaces attributes of the Student instance """
+        for i in json:
+            self.__dict__[i] = json[i]
