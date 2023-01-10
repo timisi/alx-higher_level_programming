@@ -1,33 +1,40 @@
 #!/usr/bin/python3
-"""Unittest for max_integer([..])
+"""Max integer test module.
+This module contains a class that tests for the max_integer function.
 """
 import unittest
 max_integer = __import__('6-max_integer').max_integer
 
 
 class TestMaxInteger(unittest.TestCase):
-    """ tests for max_integer
-    """
+    """Test function"""
 
-    def test_max_int_basic(self):
-        """ tests normal list of ints
+    def test_max_integer(self):
         """
-        self.assertEqual(max_integer([1, 2, 3, 4]), 4)
-
-    def test_max_int_empty(self):
-        """ tests if list is empty
+        Tests if correct tests are ok
         """
-        self.assertEqual(max_integer([]), None)
+        lst = [1, 2, 3, 4]
+        self.assertEqual(max_integer(lst), 4)
+        lst = [1, 4, 2, 3, -4]
+        self.assertEqual(max_integer(lst), 4)
+        lst = [4]
+        self.assertEqual(max_integer(lst), 4)
+        lst = [None]
+        self.assertEqual(max_integer(lst), None)
+        lst = []
+        self.assertEqual(max_integer(lst), None)
+        lst = [1, 3, float('inf'), 2]
+        self.assertEqual(max_integer(lst), float('inf'))
+        lst = [1, 3, -float('inf'), 2]
+        self.assertEqual(max_integer(lst), 3)
+        lst = [4, 1, 2, 3]
+        self.assertEqual(max_integer(lst), 4)
 
-    def test_max_int_neg(self):
-        """ tests if list has a negative int
+    def test_type(self):
         """
-        self.assertEqual(max_integer([-1, -2, -3, -4]), -1)
-
-    def test_max_int_one(self):
-        """ tests if list has only one item
+        Tests if failure tests are ok
         """
-        self.assertEqual(max_integer([1]), 1)
-
-if __name__ == '__main__':
-    unittest.main()
+        lst = [1, 2, 3, "Betty"]
+        self.assertRaises(TypeError, max_integer, lst)
+        lst = None
+        self.assertRaises(TypeError, max_integer, lst)
