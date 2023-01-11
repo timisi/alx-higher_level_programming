@@ -1,10 +1,20 @@
 #!/usr/bin/python3
-def read_lines(filename="", nb_lines=0):
-    """ function reads n lines of a text file (UTF8) prints it stdout """
+"""
+This module provides read_lines() function
+"""
 
-    with open(filename, encoding='utf-8') as f:
-        lines = f.readlines()
-        if nb_lines <= 0 or nb_lines >= len(lines):
-            [print(i, end='') for i in lines]
+
+def read_lines(filename="", nb_lines=0):
+    """
+    This is a function that reads n lines of a text file
+
+    Args:
+        param1 (filename): the file to be readed and printed
+        param2 (nb_lines): number of lines to be readed
+    """
+    with open(filename, encoding="utf-8") as f:
+        if nb_lines > 0:
+            for i in range(nb_lines):
+                print(f.readline(), end="")
         else:
-            [print(lines[i], end='') for i in range(0, nb_lines)]
+            print(f.read(), end="")

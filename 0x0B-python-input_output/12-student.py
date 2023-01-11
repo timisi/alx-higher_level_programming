@@ -1,24 +1,34 @@
 #!/usr/bin/python3
 """
-Student
-Class
+This module provides Student class
 """
 
 
 class Student:
+    """
+    Class of Student
 
+    Attributes:
+        attr1 (first_name): first name of the student
+        attr2 (last_name): last name of the student
+        attr3 (age): age of the student
+    """
     def __init__(self, first_name, last_name, age):
-        """Constructor"""
+        """
+        This is the constructor of the class
+        """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """
-        Public method Retrieves a dictionary representation of a
-        Student instance
-        """
-        if (isinstance(attrs, list) and
-                all(isinstance(x, str) for x in attrs)):
-            return {x: getattr(self, x) for x in attrs if hasattr(self, x)}
-        return self.__dict__
+        items = {}
+        if type(attrs) is list:
+            for attribute, value in self.__dict__.items():
+                if attribute in attrs:
+                    items[attribute] = value
+        else:
+            for attribute, value in sorted(self.__dict__.items()):
+                items[attribute] = value
+
+        return items

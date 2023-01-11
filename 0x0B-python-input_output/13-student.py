@@ -1,31 +1,38 @@
 #!/usr/bin/python3
-
-""" json """
+"""
+This module provides Student class
+"""
 
 
 class Student:
-    """ Class Student """
+    """
+    Class of Student
 
+    Attributes:
+        attr1 (first_name): first name of the student
+        attr2 (last_name): last name of the student
+        attr3 (age): age of the student
+    """
     def __init__(self, first_name, last_name, age):
-        """ Constructor """
+        """
+        This is the constructor of the class
+        """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """ Retrieves Class dictionary base on attr
-        """
-        if not isinstance(attrs, list) or \
-           not all(isinstance(i, str) for i in attrs):
-
-            dic = self.__dict__.copy()
+        items = {}
+        if type(attrs) is list:
+            for attribute, value in self.__dict__.items():
+                if attribute in attrs:
+                    items[attribute] = value
         else:
+            for attribute, value in sorted(self.__dict__.items()):
+                items[attribute] = value
 
-            dic = {i: self.__dict__[i] for i in attrs if i in self.__dict__}
-
-        return dic
+        return items
 
     def reload_from_json(self, json):
-        """ replaces attributes of the Student instance """
-        for i in json:
-            self.__dict__[i] = json[i]
+        for i, j in json.items():
+            self.__dict__[i] = j

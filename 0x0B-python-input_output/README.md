@@ -1,2 +1,1 @@
-**0x0B. Python - Input/Output
-**
+# This project is about Python - Input/Output
