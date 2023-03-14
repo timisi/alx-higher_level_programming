@@ -1,17 +1,18 @@
 #!/usr/bin/node
-// JS Script
+/*
+Write a script that searches the second biggest integer in the list of arguments.
 
-function sortNumber (a, b) {
-  return a - b;
-}
-let argsLen = process.argv.length;
-if (argsLen === 2 || argsLen === 3) {
-  console.log('0');
+You can assume all arguments can be converted to integer
+If no argument passed, print 0
+If the number of arguments is 1, print 0
+You must use console.log(...) to print all output
+You are not allowed to use var
+*/
+if (process.argv.length <= 3) {
+  console.log(0);
 } else {
-  let arr = [];
-  for (let i = 2; i < argsLen; i++) {
-    arr.push(process.argv[i]);
-  }
-  arr.sort(sortNumber);
-  console.log(arr[arr.length - 2]);
+  const args = process.argv.map(Number)
+    .slice(2, process.argv.length)
+    .sort((a, b) => a - b);
+  console.log(args[args.length - 2]);
 }
