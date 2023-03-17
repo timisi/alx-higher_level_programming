@@ -1,38 +1,24 @@
 #!/usr/bin/python3
-"""Display name argument of states table"""
+"""
+Displays all values in the states table of the database hbtn_0e_0_usa
+whose name matches that supplied as argument.
+Safe from SQL injections.
+Usage: ./3-my_safe_filter_states.py <mysql username> \
+                                    <mysql password> \
+                                    <database name> \
+                                    <state name searched>
+"""
 import MySQLdb
-import sys
-
-
-def filter_names_safe():
-    """Takes arguments argv to list from database
-    Only lists with states that matches name argument
-
-    Arguments:
-        argv[1]: mysql username
-        argv[2]: mysql password
-        argv[3]: database name
-        argv[4]: state name
-    """
-    if len(sys.argv) == 5:
-        db = MySQLdb.connect(host="localhost",
-                             port=3306,
-                             user=sys.argv[1],
-                             passwd=sys.argv[2],
-                             db=sys.argv[3])
-
-        cur = db.cursor()
-
-        cur.execute("SELECT * FROM states WHERE BINARY name='{:s}'\
-                    ORDER BY id ASC".format(sys.argv[4]))
-        rows = cur.fetchall()
-        for i in rows:
-            print(i)
-
-        cur.close()
-        db.close()
-    else:
-        return
+from sys import argv
 
 if __name__ == "__main__":
-    filter_names_safe()
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3], charset="utf8")
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM states WHERE name LIKE %s ORDER BY id ASC",
+                   (argv[4],))
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+    cursor.close()
+    db.close()
