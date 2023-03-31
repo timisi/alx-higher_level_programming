@@ -1,4 +1,4 @@
-# 0x11. Python - Network #1
+# 0x11. Python - Networks #1
 
 ## Description
 What you should learn from this project:
