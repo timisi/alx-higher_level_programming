@@ -1,14 +1,13 @@
 #!/usr/bin/python3
-"""Check status"""
+"""Python script that takes in a URL, sends a request to the URL and displays
+the body of the response (decoded in utf-8)."""
+
+
 import requests
 import sys
 
 
-def header():
-    """status"""
-    result = requests.get(sys.argv[1])
-
-    print(result.headers.get("X-Request-Id", None))
-
 if __name__ == "__main__":
-    header()
+    url = sys.argv[1]
+    r = requests.get(url)
+    print(r.headers.get('X-Request-Id'))

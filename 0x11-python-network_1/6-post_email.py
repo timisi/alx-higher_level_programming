@@ -1,14 +1,13 @@
 #!/usr/bin/python3
-"""Check status"""
+"""Python script that takes in a URL, sends a request to the URL and displays
+the body of the response (decoded in utf-8)."""
+
+
 import requests
 import sys
 
 
-def post():
-    """status"""
-    result = requests.post(sys.argv[1], data={"email": sys.argv[2]})
-
-    print(result.text)
-
 if __name__ == "__main__":
-    post()
+    url = sys.argv[1]
+    r = requests.post(url, data={'email': sys.argv[2]})
+    print(r.text)

@@ -1,14 +1,15 @@
 #!/usr/bin/python3
-"""Fetches header"""
+"""Python script that fetches https://intranet.hbtn.io/status"""
+
+
 import urllib.request
 import sys
 
 
-def fetcher():
-    """fetcher"""
-    with urllib.request.urlopen(sys.argv[1]) as response:
-        header = response.info()
-        print(header["X-Request-Id"])
-
 if __name__ == "__main__":
-    fetcher()
+    url = sys.argv[1]
+
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req) as response:
+        page_info = response.info()
+        print(page_info.get('X-Request-Id'))

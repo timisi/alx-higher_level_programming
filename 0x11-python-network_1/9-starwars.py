@@ -1,21 +1,16 @@
 #!/usr/bin/python3
-"""Check status"""
+"""Python script that takes in a string and sends a search request to the Star
+Wars API
+"""
 import requests
 import sys
 
 
-def searchapi():
-    """status"""
-    result = requests.get("https://swapi.co/api/people",
-                          params={"search": sys.argv[1]})
-
-    try:
-        data = result.json()
-        print("Number of results: {}".format(data["count"]))
-        for i in data["results"]:
-            print(i["name"])
-    except:
-        print("Not a valid JSON")
-
 if __name__ == "__main__":
-    searchapi()
+    url = 'https://swapi.co/api/people/?search=' + sys.argv[1]
+    r = requests.get(url)
+    json_obj = r.json()
+    results = json_obj.get('results')
+    print("Number of results: {}".format(json_obj.get('count')))
+    for people in results:
+        print(people.get('name'))
