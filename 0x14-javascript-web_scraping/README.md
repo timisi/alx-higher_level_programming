@@ -1,4 +1,4 @@
-# 0x14. Javascript - Web scraping
+# 0x14. Javascript - Web scrapingN
 
 ## Description
 What you should learn from this project:
